@@ -56,7 +56,7 @@ def create_log(
                     )
                 else:
                     reply_data = create_reply_dict(
-                        reply_data["media"]["video_versions"][0]["ur"]
+                        reply_data["media"]["video_versions"][0]["url"]
                     )
             case "animated_media":
                 reply_data = create_reply_dict(
