@@ -105,6 +105,12 @@ def scrape_users(thread: dict, viewer_json: dict) -> Dict[str, Dict[str, str]]:
         user["pk"]: {"user": user["username"], "fname": user["full_name"]}
         for user in user_data
     }
+    user_info.update(
+        {
+            user["pk"]: {"user": user["username"], "fname": user["full_name"]}
+            for user in thread["left_users"]
+        }
+    )  # Messages can be returned from users who have left the chat
     user_info[viewer_json["pk"]] = {
         "user": viewer_json["username"],
         "fname": viewer_json["full_name"],

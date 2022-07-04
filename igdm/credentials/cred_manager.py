@@ -1,3 +1,4 @@
+from distutils.command.config import config
 import json
 import requests  # type: ignore
 
@@ -37,9 +38,17 @@ def _test_cookies(cookies: Dict[str, str | int]) -> bool:
         ig_get("https://i.instagram.com/api/v1/direct_v2/inbox/", cookies=cookies)
     except requests.exceptions.TooManyRedirects:
         print("Bad session ID")
+
+        with open(conf.creds_json, "w") as f:
+            f.write("")
+
+        _generate_cookies()
+
         return False
+
     except Exception:
         return False
+
     return True
 
 
